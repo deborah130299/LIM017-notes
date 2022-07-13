@@ -1,38 +1,41 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import {   createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    GoogleAuthProvider,
-    signInWithPopup 
-} from "firebase/auth";
-import {auth} from "../Firebase/config";
+import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup
+  } from 'firebase/auth';
+import { auth } from '../Firebase/config';
 
 export const authContext = createContext()
 
 export const useAuth = () => {
   const context = useContext(authContext);
-  if (!context) throw new Error('There is no auth provider')
+  if (!context) throw new Error('No hay usuario');
   return context
 }
 
+export const signUp = ( email, password) =>
+    createUserWithEmailAndPassword( auth, email, password);
+
+export const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+export const loginWithGoogle = () => {
+  const googleProvider = new GoogleAuthProvider()
+  return signInWithPopup(auth, googleProvider)
+  }
+
 export function AuthProvider({ children }) {
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+const [user, setUser] = useState(null);
+const [loading, setLoading] = useState(true);
 
   const signUp = ( email, password) =>
     createUserWithEmailAndPassword( auth, email, password);
 
-    const login = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
-
-    const logOut = () => signOut(auth);
-
-    const loginWithGoogle = () => {
-      const googleProvider = new GoogleAuthProvider()
-      return signInWithPopup(auth, googleProvider)
-    }
+  const logOut = () => signOut(auth);
 
     useEffect (() => {
       onAuthStateChanged(auth, currentUser => {
@@ -42,6 +45,6 @@ export function AuthProvider({ children }) {
     },[])
 
   return (
-  <authContext.Provider value={{ signUp, login, user, logOut, loading, loginWithGoogle }}>{children}</authContext.Provider>
+  <authContext.Provider value={{ user, signUp, logOut, loading }}>{children}</authContext.Provider>
   );
 }

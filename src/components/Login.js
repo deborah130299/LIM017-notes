@@ -1,48 +1,51 @@
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import {  login, loginWithGoogle} from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+
 
 export function Login() {
-    const { login, loginWithGoogle } = useAuth();
-  const navigate = useNavigate()
-  const [error, setError] = useState()
-  
-    const [user, setUser] = useState({
-      email: "",
-      password: "",
-    });
-  
-    const handleChange = ({ target: { name, value } }) =>
-    setUser({ ...user, [name]: value });
-  
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('')
-        try {
-          await login(user.email, user.password)
-          navigate('/note')
-        } catch (error) {
-          console.log(error.code);
-          if (error.code === 'auth/invalid-email') {
-            setError('Correo inválido')
-          }
-          if (error.code === 'auth/weak-password') {
-            setError('La contraseña debe contener mínimo 6 caracteres')
-          }
-          if (error.code === 'auth/email-already-in-use') {
-            setError('Cuenta ya registrada')
-          }
-        }
-    };
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
-    const handleGoogleSignin = async () => {
-        try {
-          await loginWithGoogle();
-          navigate('/note');
-        } catch (error) {
-          setError(error.message);
-        }
-      };
+  const navigate = useNavigate();
+  const [error, setError] = useState();
+
+  const handleChange = ({ target: { name, value } }) =>
+    setUser({ ...user, [name]: value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const objectUser = await login(user.email, user.password);
+      localStorage.setItem('email', objectUser.user.email);
+      navigate("/Note");
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        setError("Correo inválido");
+      } else if (error.code === "auth/user-not-found") {
+        setError("El correo no está registrado");
+      }
+    }
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      const objectUser = await  loginWithGoogle();
+      //console.log(objectUser.user);
+      localStorage.setItem('email', objectUser.user.email);
+      navigate("/Note");
+    } catch (error) {
+      //console.log(error);
+    if (error) {
+  } if (error.code === "auth/invalid-email") {
+    setError("auth/correo inválido");
+  } else if (error.code === "auth/user-not-found") {
+    setError("El correo no está registrado");
+  }
+  }};
 
   return (
     <div class="box">
@@ -69,7 +72,7 @@ export function Login() {
 </div>
 
 <div id="botones">
-          <button id="btn">login</button>
+          <button id="btn" onClick={handleSubmit}>login</button>
           <button id="btn" className='BtnGoogle' onClick={handleGoogleSignin}>Acceder con Google</button>
           {error && <p>{error}</p>}
         </div>

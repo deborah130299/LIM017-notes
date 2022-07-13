@@ -1,4 +1,4 @@
-@media only screen and (min-device-width: 1180px) {
+@media only screen and (min-width: 650px) {
   body {
     background-image: url(../img/fondo2.jpg);
     background-size: cover;
@@ -35,7 +35,7 @@
     font-weight: 700;
     color: #fff;
   }
-  button:hover, button:active, button:focus {
+  .Btn-home:hover, .Btn-home:active, .Btn-home:focus {
     background: #43A047;
   }
   main {
@@ -62,13 +62,3 @@
     font-size: large;
   }
 }
-
-/* @media (max-width: px){
-    header{
-     background:#1E262D;;
-     height: 60px;
-    }
-    #botones{
-      
-    }
-} */

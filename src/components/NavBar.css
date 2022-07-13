@@ -1,0 +1,58 @@
+@media only screen and (min-width: 365px) {
+
+    .Container-NavBar {
+      background-color: rgb(17, 15, 15);
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      box-sizing: border-box;
+    }
+    
+   .Saludo{
+    display: flex;
+    justify-content: start;
+    color: #fff;
+    margin: 0.3%;
+    position: absolute;
+    top: 4%;
+    font-size:small;
+   }
+
+ 
+    .Content-BtnLogOut{
+      display: flex;
+      justify-content: end; display: flex;
+      justify-content: end;
+    }
+    .BtnLogOut{
+      background-color: transparent;
+      border: 2px solid;
+      border-radius: 0.6em;
+      line-height: 1;
+      margin: 15px;
+      padding: 0.8em 0.8em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+    }
+    .BtnLogOut:hover, .BtnLogOut:active, .BtnLogOut:focus {
+      background: #43A047;
+    }
+  }
+
+  @media only screen and (min-width: 650px) {
+
+    .Saludo{
+      display: flex;
+      justify-content: start;
+      color: #fff;
+      margin: 0.3%;
+      position: absolute;
+      top: 4%;
+      font-size:medium;
+     }
+     .BtnLogOut{
+      padding: 1.2em 1.2em;
+  }
+  
+  }

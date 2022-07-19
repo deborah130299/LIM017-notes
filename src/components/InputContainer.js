@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Collapse } from "@material-ui/core";
+import { Collapse } from "@material-ui/core";//contraer//
 import InputCard from "../components/InputCard";
 
 

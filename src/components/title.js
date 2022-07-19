@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
-import { MoreVert } from "@material-ui/icons";
-import ClickOutHandler from "react-onclickout"; 
+import { MoreVert } from "@material-ui/icons";//tres puntos vertical
+import ClickOutHandler from "react-onclickout";
 import storeApi from "../StoreApi";
-
 
 export default function Title({ title, listId }) {
   const [open, setOpen] = useState(false);

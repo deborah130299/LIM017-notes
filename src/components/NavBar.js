@@ -21,7 +21,7 @@ export function NavBar() {
   return (
     <div className='Container-NavBar'>
     <div className='Saludo'>
-    <h3>Hola, {user.displayName || user.email}</h3>
+    <h3>Hola, {console.log(user) || user.email}</h3>
     </div>
     <div className='Content-BtnLogOut'>
     <button className='BtnLogOut' data-testid="btnLogOutNote" onClick={handleLogout}>

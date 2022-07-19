@@ -36,10 +36,10 @@ export function Register() {
     };
 
   return (
-    <div class="box">
+    <div className="box">
     <h2>Register</h2>
   <form onSubmit={handleSubmit}>
-    <div class="user-box">
+    <div className="user-box">
     <input
       type="email"
       name="email"
@@ -49,7 +49,7 @@ export function Register() {
     <label htmlFor="email">Email</label>
     </div>
 
-<div class="user-box">
+<div className="user-box">
 <input
       type="password"
       name="password"

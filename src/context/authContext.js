@@ -8,7 +8,7 @@ import {
   signInWithPopup
   } from 'firebase/auth';
 import { auth } from '../Firebase/config';
-
+//...
 export const authContext = createContext()
 
 export const useAuth = () => {
@@ -36,7 +36,7 @@ const [loading, setLoading] = useState(true);
     createUserWithEmailAndPassword( auth, email, password);
 
   const logOut = () => signOut(auth);
-
+//useEffect te permite llevar a cabo efectos secundarios en componentes funcionales
     useEffect (() => {
       onAuthStateChanged(auth, currentUser => {
         setUser(currentUser);

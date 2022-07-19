@@ -10,7 +10,7 @@ export function Login() {
   });
 
   const navigate = useNavigate();
-  const [error, setError] = useState();
+  const [error, setError] = useState();//declara una variable de estado llamada error El segundo elemento retornado es una función que nos permite actualizar 
 
   const handleChange = ({ target: { name, value } }) =>
     setUser({ ...user, [name]: value });
@@ -34,34 +34,32 @@ export function Login() {
   const handleGoogleSignin = async () => {
     try {
       const objectUser = await  loginWithGoogle();
-      //console.log(objectUser.user);
       localStorage.setItem('email', objectUser.user.email);
       navigate("/Note");
     } catch (error) {
-      //console.log(error);
     if (error) {
   } if (error.code === "auth/invalid-email") {
-    setError("auth/correo inválido");
+    setError("correo inválido");
   } else if (error.code === "auth/user-not-found") {
     setError("El correo no está registrado");
   }
   }};
 
   return (
-    <div class="box">
+    <div className="box">
       <h2>Login</h2>
     <form onSubmit={handleSubmit}>
-      <div class="user-box">
+      <div className="user-box">
       <input
         type="email"
         name="email"
        required=""
         onChange={handleChange}
-      />
+      />{/* onChange se activa con cada pulsación de tecla en el teclado. */}
       <label htmlFor="email">Email</label>
       </div>
 
-<div class="user-box">
+<div className="user-box">
 <input
         type="password"
         name="password"
@@ -72,7 +70,7 @@ export function Login() {
 </div>
 
 <div id="botones">
-          <button id="btn" onClick={handleSubmit}>login</button>
+          <button id="btn">login</button>
           <button id="btn" className='BtnGoogle' onClick={handleGoogleSignin}>Acceder con Google</button>
           {error && <p>{error}</p>}
         </div>

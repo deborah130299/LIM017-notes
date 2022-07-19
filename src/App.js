@@ -15,7 +15,7 @@ import Main from './components/Main.js';
 
  function App() {
   return (
-    <div >
+    
     <AuthProvider>
     <BrowserRouter>
       <Routes>
@@ -26,7 +26,7 @@ import Main from './components/Main.js';
       </Routes>
     </BrowserRouter>
     </AuthProvider>
-    </div>
+   
   );
 }
 export default App;

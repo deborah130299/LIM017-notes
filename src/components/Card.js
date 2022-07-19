@@ -29,7 +29,7 @@ export default function Card({ card, index, listId }) {
                 className="input-card-title"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                onBlur={handleOnBlur}
+                onBlur={handleOnBlur} /* Cada vez que se desenfoca del campo de entrada, el evento se activará */
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     handleOnBlur(card.id);
